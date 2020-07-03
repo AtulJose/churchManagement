@@ -24,7 +24,8 @@ public class LoginController {
 	@RequestMapping(value = "/login")
 	public String goToLoginPage()
 	{
-		return "login.jsp";
+
+		return "login";
 	}
 	
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
@@ -41,11 +42,10 @@ public class LoginController {
 			
 			model.addAttribute("family", family);
 			
-		
 			
-			return "dashboard.jsp";
+			return "home";
 		}else {
-			return "login.jsp";
+			return "login";
 		}
 		
 	}

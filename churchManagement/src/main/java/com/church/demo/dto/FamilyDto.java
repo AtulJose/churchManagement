@@ -7,7 +7,6 @@ import javax.persistence.Column;
 public class FamilyDto implements Serializable{
 	private Integer familyId;
 	private String familyName;
-	private String street;
 	private String city;
 	private String addressLn1;
 	private String addressLn2;
@@ -29,12 +28,7 @@ public class FamilyDto implements Serializable{
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
 	}
-	public String getStreet() {
-		return street;
-	}
-	public void setStreet(String street) {
-		this.street = street;
-	}
+	
 	public String getCity() {
 		return city;
 	}

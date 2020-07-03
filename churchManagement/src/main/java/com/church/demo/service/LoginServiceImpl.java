@@ -12,8 +12,9 @@ import com.church.demo.entity.Family;
 import com.church.demo.repository.FamilyRepository;
 
 
+
 @Service
-public class LoginServiceImpl {
+public class LoginServiceImpl implements LoginService{
 	
 	@Autowired
 	private FamilyRepository familyRepository;
@@ -36,6 +37,7 @@ public class LoginServiceImpl {
 				return familyDto;
 			}
 		}catch(Exception e) {
+			System.out.println(e);
 			return null;
 		}
 		

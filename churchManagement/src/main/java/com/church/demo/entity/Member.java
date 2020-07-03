@@ -47,21 +47,21 @@ public class Member {
 	@Column(name="confirmationDate")
 	@Temporal(TemporalType.DATE)
 	private Date confirmationDate;
-	@Column(name="BibleReadingInterest")
+	@Column(name="bibleReadingInterest")
 	private Boolean BibleReadingInterest;
 	@Column(name="altarService")
 	private Boolean altarService;
 	@Column(name="sendMail")
 	private Boolean sendMail;
 	@Column(name="age")
-	private String age;
+	private Integer age;
 	@Column(name="sex")
 	private String sex;
 	@Column(name="maritalStatus")
 	private String maritalStatus;
 	
 	@ManyToOne
-	@JoinColumn(name = "familyId")
+	@JoinColumn(name = "x")
 	private Family family;
 	
 	public Family getFamily() {
@@ -160,10 +160,10 @@ public class Member {
 	public void setSendMail(Boolean sendMail) {
 		this.sendMail = sendMail;
 	}
-	public String getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(String age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public String getSex() {

@@ -20,10 +20,7 @@ public class Family {
 	
 	@Column(name="familyName")
 	private String familyName;
-	
-	@Column(name="street")
-	private String street;
-	
+
 	@Column(name="city")
 	private String city;
 	
@@ -76,12 +73,7 @@ public class Family {
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
 	}
-	public String getStreet() {
-		return street;
-	}
-	public void setStreet(String street) {
-		this.street = street;
-	}
+	
 	public String getCity() {
 		return city;
 	}
