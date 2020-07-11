@@ -1,6 +1,7 @@
 package com.church.demo.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="MEMBER")
+@Table(name="tb_member")
 public class Member {
 	@Id
 	@Column(name="memberId")
@@ -61,9 +63,18 @@ public class Member {
 	private String maritalStatus;
 	
 	@ManyToOne
-	@JoinColumn(name = "x")
+	@JoinColumn(name = "familyId")
 	private Family family;
 	
+	@OneToMany(mappedBy = "member")
+	List<Reading_MemberMap> readingMemberMapList;
+	
+	public List<Reading_MemberMap> getReadingMemberMapList() {
+		return readingMemberMapList;
+	}
+	public void setReadingMemberMapList(List<Reading_MemberMap> readingMemberMapList) {
+		this.readingMemberMapList = readingMemberMapList;
+	}
 	public Family getFamily() {
 		return family;
 	}

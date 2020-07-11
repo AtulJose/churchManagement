@@ -12,4 +12,6 @@ public interface FamilyRepository extends JpaRepository<Family,Integer>{
 
 		@Query("from Family where userId = ?1 and password = ?2")
 		Family findByUserIdAndPassword(String userId, String password);
+		
+		
 }

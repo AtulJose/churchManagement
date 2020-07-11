@@ -1,8 +1,12 @@
 package com.church.demo.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
+
+import com.church.demo.entity.Family;
+import com.church.demo.entity.Member;
 
 public class FamilyDto implements Serializable{
 	private Integer familyId;
@@ -15,7 +19,14 @@ public class FamilyDto implements Serializable{
 	private String nativePlace;
 	private String userId;
 	private String password;
+	List<MemberDto> memberList;
 	
+	public List<MemberDto> getMemberList() {
+		return memberList;
+	}
+	public void setMemberList(List<MemberDto> memberList) {
+		this.memberList = memberList;
+	}
 	public Integer getFamilyId() {
 		return familyId;
 	}

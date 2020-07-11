@@ -2,6 +2,7 @@ package com.church.demo.service;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class LoginServiceImpl implements LoginService{
 	@Autowired
 	private FamilyRepository familyRepository;
 	
-	
+	private ModelMapper modelMapper = new ModelMapper();
 	@Transactional
 	public FamilyDto getUserByUserIdAndPassword(String userId,String password) {
 		
@@ -32,8 +33,8 @@ public class LoginServiceImpl implements LoginService{
 			}else {
 				FamilyDto familyDto = new FamilyDto();
 				
-				BeanUtils.copyProperties(family, familyDto);
-				
+				//BeanUtils.copyProperties(family, familyDto);
+				familyDto = modelMapper.map(family, FamilyDto.class);
 				return familyDto;
 			}
 		}catch(Exception e) {

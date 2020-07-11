@@ -11,10 +11,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="FAMILY")
+@Table(name="tb_family")
 public class Family {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="familyId")
 	private Integer familyId;
 	

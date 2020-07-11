@@ -14,45 +14,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.church.demo.dto.EventsDto;
 import com.church.demo.dto.FamilyDto;
+import com.church.demo.dto.Reading_MemberMapDto;
 import com.church.demo.service.EventService;
-import com.church.demo.service.LoginService;
-
+import com.church.demo.service.ReadingMemberMapService;
 
 @Controller
-public class LoginController {
-
-	@Autowired
-	private LoginService loginService;
+public class HomeController {
 	
 	@Autowired
 	private EventService eventService;
 	
-	@RequestMapping(value = "/login")
-	public String goToLoginPage()
-	{
-
-		return "login";
-	}
+	@Autowired
+	private ReadingMemberMapService readingMemberMapService;
 	
-	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
-	public String doLogin(Model model,HttpSession session,@RequestParam("userId") String userId,@RequestParam("password") String password)
-	{
-
-		FamilyDto familyDto = loginService.getUserByUserIdAndPassword(userId, password);
-		
-		if(familyDto != null) {
+	@RequestMapping(value = "/home")
+	public String goTohome(Model model,HttpSession session)
+	{		
 		
 			Date currentDate = new Date(); 
 			List<EventsDto> upcomingEventsDtos = eventService.findEventsfromCurrentDate(currentDate);
+			FamilyDto familyDto = (FamilyDto) session.getAttribute("family");
+			List<Reading_MemberMapDto> readingMapDtoList = readingMemberMapService.findFamilyReadingsMapfromCurrentDate(currentDate, familyDto);
 			
-
-			session.setAttribute("family", familyDto);
 			model.addAttribute("upcomingEventsList", upcomingEventsDtos);
-			
+			model.addAttribute("upcomingReadings", readingMapDtoList);
 			return "home";
-		}else {
-			return "login";
-		}
 		
 	}
 }

@@ -9,7 +9,7 @@ import javax.persistence.TemporalType;
 
 import com.church.demo.entity.Family;
 
-public class MemeberDto {
+public class MemberDto {
 	private Integer memberId;
 	private String firstName;
 	private String lastName;
@@ -28,7 +28,7 @@ public class MemeberDto {
 	private String age;
 	private String sex;
 	private String maritalStatus;
-	private Family family;
+	private FamilyDto family;
 	public Integer getMemberId() {
 		return memberId;
 	}
@@ -37,6 +37,10 @@ public class MemeberDto {
 	}
 	public String getFirstName() {
 		return firstName;
+	}
+	
+	public String getFullName() {
+		return firstName+" "+lastName;
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -137,11 +141,12 @@ public class MemeberDto {
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
-	public Family getFamily() {
+	public FamilyDto getFamily() {
 		return family;
 	}
-	public void setFamily(Family family) {
+	public void setFamily(FamilyDto family) {
 		this.family = family;
 	}
+	
 	
 }
