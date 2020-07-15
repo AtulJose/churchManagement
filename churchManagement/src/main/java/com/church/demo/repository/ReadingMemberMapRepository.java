@@ -13,7 +13,8 @@ import com.church.demo.entity.Reading_MemberMap;
 @Repository
 public interface ReadingMemberMapRepository extends JpaRepository<Reading_MemberMap,Integer>{
 	
-	@Query("from Reading_MemberMap r JOIN Member m where r.readingDate >= ?1 AND m.memberId=?2")
+	@Query("from Reading_MemberMap r inner join r.member m where r.readingDate >= ?1 and m.memberId=?2")
 	public List<Reading_MemberMap> findMemberReadingMapfromCurrentDate(Date date,Integer id);
 
 }
+

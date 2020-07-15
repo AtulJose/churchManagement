@@ -6,9 +6,9 @@
 <div class="container" style="margin-top: 30px">
 	<h3>Liturgy</h3>
 	<ul class="nav nav-tabs">
-		<li class="nav-item"><a class="nav-link active" href="reading">Reading</a>
+		<li class="nav-item"><a class="nav-link" href="reading">Reading</a>
 		</li>
-		<li class="nav-item"><a class="nav-link" href="alterService">Alter
+		<li class="nav-item"><a class="nav-link active" href="alterService">Alter
 				Service</a></li>
 	</ul>
 	<div class="row">
@@ -20,8 +20,7 @@
 					class="table table-striped table-bordered" style="width: 100%">
 					<thead>
 						<tr>
-							<th>Reading</th>
-							<th>Description</th>
+							<th>Alter Server</th>
 							<th>Date</th>
 							<th>Name</th>
 							
@@ -30,16 +29,15 @@
 
 					<tbody>
 
-						<c:forEach items="${readingMapList}" var="readingMap">
+						<c:forEach items="${alterServiceMapList}" var="alterServiceMap">
 
 							<tr>
-								<td><c:out value="${readingMap.reading.readingType}"></c:out></td>
-								<td><c:out value="${readingMap.readingDesc}"></c:out></td>
-								<td><f:formatDate value="${readingMap.readingDate}"
+								<td><c:out value="${alterServiceMap.alterService.alterServiceType}"></c:out></td>
+								<td><f:formatDate value="${alterServiceMap.alterServiceDate}"
 										pattern="MM/dd/yyyy" /></td>
-								<td><c:out value="${readingMap.member.firstName} ${readingMap.member.lastName}"></c:out></td>
-								<td><a href="editReading?id=${readingMap.readingMapId}">Edit</a> / <a
-									href="deleteReading?id=${readingMap.readingMapId}">Delete</a></td>
+								<td><c:out value="${alterServiceMap.member.firstName} ${alterServiceMap.member.lastName}"></c:out></td>
+								<td><a href="editAlterService?id=${alterServiceMap.alterServiceMapId}">Edit</a> / <a
+									href="deleteAlterService?id=${alterServiceMap.alterServiceMapId}">Delete</a></td>
 							</tr>
 						</c:forEach>
 
@@ -56,36 +54,29 @@
 				<div class="panel-heading">User Entry</div>
 				<div class="panel-body">
 
-					<form:form id="ReadingMapForm" name="ReadingMapForm" action="processReading"
-						method="post" modelAttribute="readingMap">
+					<form:form id="AlterServiceMapForm" name="AlterServiceMapForm" action="processAlterService"
+						method="post" modelAttribute="alterServiceMap">
 
-						<form:hidden path="readingMapId" id="readingMapId" />
+						<form:hidden path="alterServiceMapId" id="alterServiceMapId" />
 
 						<div class="form-group">
-							<label for="readingType">Reading Type</label>
-							<form:select path="reading.readingId" id="readingType">
-								<form:option value="${null}">Select Reading</form:option>
-								<form:options items="${readingTypeList}" itemLabel="readingType"
-									itemValue="readingId" />
+							<label for="">Alter Server</label>
+							<form:select path="alterService.alterServiceId" id="alterServiceType">
+								<form:option value="${null}">Select AlterService</form:option>
+								<form:options items="${alterServiceTypeList}" itemLabel="alterServiceType"
+									itemValue="alterServiceId" />
 							</form:select>
 							<div class="help-block with-errors"></div>
 						</div>
 
 						<div class="form-group">
-							<label for="readingDate">Date</label>
+							<label for="alterServiceDate">Date</label>
 
-							<form:input path="readingDate" id="readingDate" name="readingDate"
-								cssClass="form-control" placeholder="Readingt Date MM/DD/YYYY" required="true" />
+							<form:input path="alterServiceDate" id="alterServiceDate" name="alterServiceDate"
+								cssClass="form-control" placeholder="AlterServicet Date MM/DD/YYYY" required="true" />
 							<p>
-								<form:errors path="readingDate" cssStyle="color:red"></form:errors>
+								<form:errors path="alterServiceDate" cssStyle="color:red"></form:errors>
 								<p />
-						</div>
-
-
-						<div class="form-group">
-							<label for="readingDesc">Description:</label>
-							<form:input path="readingDesc" id="readingDesc" name="readingDesc"
-								placeholder="Description" cssClass="form-control" />
 						</div>
 
 						<div class="form-group">
@@ -101,7 +92,7 @@
 						<button type="submit" class="btn btn-default">Submit</button>
 
 						<button type="button" class="btn btn-default"
-							onclick="location.href='/clearReading'">Clear</button>
+							onclick="location.href='/clearAlterService'">Clear</button>
 					</form:form>
 
 				</div>

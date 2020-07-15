@@ -9,5 +9,9 @@ public interface FamilyService {
 
 	List<FamilyDto> getAllFamilyList();
 
+	void saveFamily(FamilyDto familyDto);
 	
+	void deleteFamily(Integer id);
+	
+	FamilyDto findFamilyById(Integer id);
 }

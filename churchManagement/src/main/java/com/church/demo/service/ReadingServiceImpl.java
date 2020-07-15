@@ -24,6 +24,7 @@ public class ReadingServiceImpl implements ReadingService {
 
 	private ModelMapper modelMapper = new ModelMapper();
 
+	
 	@Override
 	@Transactional
 	public List<ReadingDto> getAllReadingsList() {

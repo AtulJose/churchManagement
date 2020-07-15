@@ -44,7 +44,7 @@ public class ReadingMemberMapServiceImpl implements ReadingMemberMapService {
 			for (MemberDto memberDto : memberDtoList) {
 				Member member = modelMapper.map(memberDto, Member.class);
 				List<Reading_MemberMap> readingMapList = readingMemberMapRepository
-						.findMemberReadingMapfromCurrentDate(date, member.getMemberId());
+						.findMemberReadingMapfromCurrentDate(date,member.getMemberId());
 
 				if (!(readingMapList == null || readingMapList.size() == 0)) {
 					for (Reading_MemberMap readingMap : readingMapList) {
