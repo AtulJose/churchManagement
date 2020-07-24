@@ -10,22 +10,22 @@ import com.church.demo.entity.Ward;
 
 public class EventsDto {
 	private Integer eventId;
-	
+
 	@NotNull
-	@Size(min = 2,max = 20, message = "Name must be atleast 2 charecters and less than 20")
+	@Size(min = 2, max = 20, message = "Name must be atleast 2 charecters and less than 20")
 	private String eventName;
-	
+
 	@NotNull(message = "Date is not in correct format MM/DD/YYYY")
 	@Future
 	private Date eventDate;
-	
-	@NotNull(message="Type is required")
+
+	@NotNull(message = "Type is required")
 	private String eventType;
 
 	private String eventDesc;
-	
+
 	private WardDto ward;
-	
+
 	public WardDto getWard() {
 		return ward;
 	}
@@ -34,6 +34,13 @@ public class EventsDto {
 		this.ward = ward;
 	}
 
+	/*
+	 * private Integer wardId;
+	 * 
+	 * public Integer getWardId() { return wardId; }
+	 * 
+	 * public void setWardId(Integer wardId) { this.wardId = wardId; }
+	 */
 	public Integer getEventId() {
 		return eventId;
 	}

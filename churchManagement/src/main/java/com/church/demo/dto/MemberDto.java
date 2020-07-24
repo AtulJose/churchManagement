@@ -2,13 +2,6 @@ package com.church.demo.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import com.church.demo.entity.Family;
-
 public class MemberDto {
 	private Integer memberId;
 	private String firstName;

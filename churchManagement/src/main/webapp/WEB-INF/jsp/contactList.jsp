@@ -3,7 +3,21 @@
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="include/header.jsp"></c:import>
 
-
+<script>
+	function fieldDispay() {
+		var familyEntryFields = document.getElementById("FamilyEntry");
+		var memberEntryFields = document.getElementById("MemberEntry");
+		var fieldFlag = "${fieldFlag}";
+		if (fieldFlag === "Member") {
+			familyEntryFields.style.display = "none";
+			memberEntryFields.style.display = "block";			
+		} else {
+			familyEntryFields.style.display = "block";
+			memberEntryFields.style.display = "none";
+		}
+	}
+	window.onload = fieldDispay;
+</script>
 <div style="margin-top: 30px; margin-left: 20px; margin-right: 20px">
 	<h3>Contact list</h3>
 	<div class="row">
@@ -68,8 +82,8 @@
 													<td><c:out value="${member.phone}"></c:out></td>
 													<td><c:out value="${member.email}"></c:out></td>
 													<td style="width: 10%"><a
-														href="editFamily?id=${member.memberId}">Edit</a> / <a
-														href="deleteFamily?id=${member.memberId}">Delete</a></td>
+														href="editMember?id=${member.memberId}">Edit</a> / <a
+														href="deleteMember?id=${member.memberId}">Delete</a></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -89,8 +103,7 @@
 												<td style="width: 10%"><a
 													href="editFamily?id=${family.familyId}">Edit</a> / <a
 													href="deleteFamily?id=${family.familyId}">Delete</a> / <a
-														href="addMemeber?id=${family.familyId}">Add Member</a>
-													</td>
+													href="addMember?id=${family.familyId}">Add Member</a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -104,7 +117,7 @@
 
 
 
-		<div class="col-sm-3">
+		<div class="col-sm-3" onload="fieldDispay()">
 			<div class="panel panel-primary" id="FamilyEntry">
 				<div class="panel-heading">Family Entry</div>
 				<div class="panel-body">
@@ -180,7 +193,7 @@
 								<form:errors path="nativePlace"></form:errors>
 							<p />
 						</div>
-						
+
 						<div class="form-group">
 							<label for="userId">userId</label>
 
@@ -203,7 +216,92 @@
 						<button type="submit" class="btn btn-default">Submit</button>
 
 						<button type="button" class="btn btn-default"
-							onclick="location.href='/clearAlterService'">Clear</button>
+							onclick="location.href='/clearFamily'">Clear</button>
+					</form:form>
+
+				</div>
+			</div>
+
+
+			<div class="panel panel-primary" id="MemberEntry">
+				<div class="panel-heading">Member Entry</div>
+				<div class="panel-body">
+
+					<form:form id="MemberForm" name="MemberForm" action="processMember"
+						method="post" modelAttribute="member">
+
+						<form:hidden path="memberId" id="memberId" />
+						<form:hidden path="family.familyId" id="familyId" />
+
+						<div class="form-group">
+							<label for="firstName">First Name</label>
+
+							<form:input path="firstName" id="firstName" name="firstName"
+								cssClass="form-control" placeholder="First Name" required="true" />
+							<p>
+								<form:errors path="firstName"></form:errors>
+							<p />
+						</div>
+						<div class="form-group">
+							<label for="lastName">Last Name</label>
+
+							<form:input path="lastName" id="lastName" name="lastName"
+								cssClass="form-control" placeholder="Last Name" required="true" />
+							<p>
+								<form:errors path="lastName"></form:errors>
+							<p />
+						</div>
+						<div class="form-group">
+							<label for="email">Email</label>
+
+							<form:input path="email" id="email" name="email"
+								cssClass="form-control" placeholder="Email" required="true" />
+							<p>
+								<form:errors path="email"></form:errors>
+							<p />
+						</div>
+						<div class="form-group">
+							<label for="phone">Phone</label>
+
+							<form:input path="phone" id="phone" name="phone"
+								cssClass="form-control" placeholder="Phone" required="true" />
+							<p>
+								<form:errors path="phone"></form:errors>
+							<p />
+						</div>
+						<div class="form-group">
+							<label for="relationshipToFamily">Relationship To Family</label>
+
+							<form:input path="relationshipToFamily" id="relationshipToFamily"
+								name="relationshipToFamily" cssClass="form-control"
+								placeholder="relationshipToFamily" required="true" />
+							<p>
+								<form:errors path="relationshipToFamily"></form:errors>
+							<p />
+						</div>
+						<div class="form-group">
+							<label for="maritalStatus">maritalStatus</label>
+
+							<form:input path="maritalStatus" id="maritalStatus"
+								name="maritalStatus" cssClass="form-control"
+								placeholder="Marital Status" required="true" />
+							<p>
+								<form:errors path="maritalStatus"></form:errors>
+							<p />
+						</div>
+						<div class="form-group">
+							<label for="sex">Gender</label>
+
+							<form:input path="sex" id="sex" name="sex"
+								cssClass="form-control" placeholder="Gender" required="true" />
+							<p>
+								<form:errors path="sex"></form:errors>
+							<p />
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+
+						<button type="button" class="btn btn-default"
+							onclick="location.href='/clearMember'">Clear</button>
 					</form:form>
 
 				</div>

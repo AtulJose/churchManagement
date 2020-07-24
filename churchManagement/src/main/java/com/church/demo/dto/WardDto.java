@@ -2,18 +2,18 @@ package com.church.demo.dto;
 
 import java.util.List;
 
-import com.church.demo.entity.Events;
 
 public class WardDto {
 	private Integer wardId;
 	private String wardName;
-	private List<Events> eventList;
 
-	public List<Events> getEventList() {
+	private List<EventsDto> eventList;
+
+	public List<EventsDto> getEventList() {
 		return eventList;
 	}
 
-	public void setEventList(List<Events> eventList) {
+	public void setEventList(List<EventsDto> eventList) {
 		this.eventList = eventList;
 	}
 

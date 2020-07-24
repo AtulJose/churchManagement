@@ -2,7 +2,20 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="include/header.jsp"></c:import>
+<script>
+	function WardDetailsDispay(eventType) {
+		var wardDetailsField = document.getElementById("wardDetails");
+		if (eventType === "Ward") {
+			alert("ward")
+			wardDetailsField.style.display = "block";
+		} else {
+			alert("common")
+			wardDetailsField.style.display = "none";
+		}
+	}
+</script>
 <h3>Events</h3>
+
 <div class="container" style="margin-top: 30px">
 	<div class="row">
 
@@ -80,11 +93,11 @@
 
 						<div class="form-group">
 							<label for="eventDesc">Description:</label>
-							<form:input path="eventDesc" id="eventDesc" name="eventDesc"  placeholder="Description"
-								cssClass="form-control" />
+							<form:input path="eventDesc" id="eventDesc" name="eventDesc"
+								placeholder="Description" cssClass="form-control" />
 						</div>
 
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label for="eventType">Type:</label>
 
 							<form:input path="eventType" id="eventType" name="eventType"  placeholder="Type"
@@ -92,22 +105,25 @@
 							<p>
 								<form:errors path="eventType"></form:errors>
 							<p />
-						</div>
+						</div> --%>
 
-					<%-- 	<div class="form-group">
-							<form:select path="ward" id="ward">
-								<c:forEach var="ward" items="${wardList}">
-									<form:option value="${ward}"> ${ward.wardName} </form:option>
-								</c:forEach>
-							</form:select>
-
-						</div>
- --%>
 						<div class="form-group">
-							<label for="ward">Ward</label>
+							<label for="eventType">Type:</label>
+							<form:select id="eventType" path="eventType"
+								onchange="WardDetailsDispay(this.value)">
+								<form:option value="${null}">Select One</form:option>
+								<form:options items="${eventTypeList}" />
+							</form:select>
+							<div class="help-block with-errors"></div>
+						</div>
+
+
+						<div class="form-group" id="wardDetails">
+							<label for="ward">Ward: </label>
 							<form:select path="ward.wardId" id="wardId">
 								<form:option value="${null}">Select One</form:option>
-								<form:options items="${wardList}" itemLabel="wardName" itemValue = "wardId"/>
+								<form:options items="${wardList}" itemLabel="wardName"
+									itemValue="wardId" />
 							</form:select>
 							<div class="help-block with-errors"></div>
 						</div>

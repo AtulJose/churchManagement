@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.church.demo.dto.MemberDto;
-
 import com.church.demo.entity.Member;
+
 
 import com.church.demo.repository.MemberRepository;
 
@@ -45,5 +45,43 @@ public class MemberServiceImpl implements MemberService {
 			return null;
 		}
 
+	}
+	
+	@Override
+	@Transactional
+	public void saveMember(MemberDto memberDto) {
+		try {
+			Member member = new Member();
+			member = modelMapper.map(memberDto, Member.class);
+			// BeanUtils.copyProperties(eventsDto,event);
+			memberRepository.save(member);
+		} catch (Exception e) {
+
+		}
+		
+	}
+
+	@Override
+	@Transactional
+	public void deleteMember(Integer id) {
+		try {
+			memberRepository.deleteById(id);
+		} catch (Exception e) {
+
+		}
+	}
+
+	@Override
+	@Transactional
+	public MemberDto findMemberById(Integer id) {
+		try {
+			Member member = memberRepository.getOne(id);
+			MemberDto memberDto = new MemberDto();
+			memberDto = modelMapper.map(member, MemberDto.class);
+			return memberDto;
+		} catch (Exception e) {
+			return null;
+
+		}
 	}
 }

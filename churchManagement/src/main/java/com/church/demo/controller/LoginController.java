@@ -43,13 +43,13 @@ public class LoginController {
 		if(familyDto != null) {
 		
 			Date currentDate = new Date(); 
-			List<EventsDto> upcomingEventsDtos = eventService.findEventsfromCurrentDate(currentDate);
+			//List<EventsDto> upcomingEventsDtos = eventService.findEventsfromCurrentDate(currentDate);
 			
 
 			session.setAttribute("family", familyDto);
-			model.addAttribute("upcomingEventsList", upcomingEventsDtos);
+			//model.addAttribute("upcomingEventsList", upcomingEventsDtos);
 			
-			return "home";
+			return "redirect:/home";
 		}else {
 			return "login";
 		}

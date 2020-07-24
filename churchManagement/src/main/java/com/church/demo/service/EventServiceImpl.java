@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.church.demo.dto.EventsDto;
 import com.church.demo.entity.Events;
 import com.church.demo.repository.EventsRepository;
+import com.church.demo.repository.WardRepository;
 
 import ch.qos.logback.core.joran.util.beans.BeanUtil;
 
@@ -21,6 +22,9 @@ public class EventServiceImpl implements EventService{
 
 	@Autowired
     private EventsRepository eventsRepository;
+	
+	@Autowired
+	private WardService wardService;
 	
 	private ModelMapper modelMapper = new ModelMapper();
 	
@@ -74,6 +78,11 @@ public class EventServiceImpl implements EventService{
 	public void saveEvent(EventsDto eventsDto)
 	{
 		try {
+			if(eventsDto.getWard().getWardId()!=null && eventsDto.getEventType()=="Ward")
+				eventsDto.setWard(wardService.findWardById(eventsDto.getWard().getWardId()));
+			else
+				eventsDto.setWard(null);
+			
 			Events event = new Events();
 			event = modelMapper.map(eventsDto, Events.class);
 			//BeanUtils.copyProperties(eventsDto,event);
@@ -89,7 +98,7 @@ public class EventServiceImpl implements EventService{
 	{
 		try {
 			Events event = eventsRepository.getOne(id);
-			EventsDto eventsDto = new EventsDto();
+			EventsDto eventsDto;
 			eventsDto = modelMapper.map(event, EventsDto.class);
 			//BeanUtils.copyProperties(event,eventsDto);
 			return eventsDto;
@@ -109,4 +118,23 @@ public class EventServiceImpl implements EventService{
 		}
 		
 	}
+	
+	/*
+	 * public EventsDto entityToDtoMap(Events event) { EventsDto eventDto = new
+	 * EventsDto(); eventDto.setEventId(event.getEventId());
+	 * eventDto.setEventDate(event.getEventDate());
+	 * eventDto.setEventDesc(event.getEventDesc());
+	 * eventDto.setEventName(event.getEventName());
+	 * eventDto.setEventType(event.getEventType());
+	 * eventDto.setWardId(event.getWard().getWardId()); return eventDto; }
+	 * 
+	 * public Events entityToDtoMap(EventsDto eventDto) { Events event = new
+	 * Events(); event.setEventId(eventDto.getEventId());
+	 * event.setEventDate(eventDto.getEventDate());
+	 * event.setEventDesc(eventDto.getEventDesc());
+	 * event.setEventName(eventDto.getEventName());
+	 * event.setEventType(eventDto.getEventType()); //if(eventDto.getWardId()!=
+	 * null) event.setWard(wardRepository.getOne(eventDto.getWardId())); return
+	 * event; }
+	 */
 }

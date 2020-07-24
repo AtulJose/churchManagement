@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.church.demo.dto.EventsDto;
 import com.church.demo.dto.WardDto;
+import com.church.demo.entity.Events;
 import com.church.demo.entity.Ward;
 import com.church.demo.repository.WardRepository;
 
@@ -41,6 +42,21 @@ public class wardServiceImpl implements WardService{
 			return wardDtoList;
 		}catch(Exception e) {
 			return null;
+		}
+	}
+	
+	@Transactional
+	public WardDto findWardById(Integer id)
+	{
+		try {
+			Ward ward = wardRepository.getOne(id);
+			WardDto wardDto;
+			wardDto = modelMapper.map(ward, WardDto.class);
+			//BeanUtils.copyProperties(event,eventsDto);
+			return wardDto;
+		}catch(Exception e) {
+			return null;
+			
 		}
 	}
 
